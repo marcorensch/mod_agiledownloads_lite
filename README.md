@@ -1,6 +1,8 @@
 # Agile Downloads
 for Joomla!
+
 Type: Joomla! Module
+
 Compatibility: Joomla! 3 & Joomla! 4 (beta)
 <hr>
 ### Professional Features that are <b>not</b> integrated in this lite version:
