@@ -5,7 +5,8 @@ Type: Joomla! Module
 
 Compatibility: Joomla! 3 & Joomla! 4 (beta)
 <hr>
-### Professional Features that are <b>not</b> integrated in this lite version:
+
+<h3>Professional Features that are <b>not</b> integrated in this lite version:</h3>
 
 - Recursive Folderselection
 - Multiple Source Folders
@@ -17,4 +18,4 @@ Compatibility: Joomla! 3 & Joomla! 4 (beta)
 - German Language Support
 
 
-Get the Full Version from nx-designs.ch: https://nx-designs.ch/ext/agile-downloads
+Get the Full Version of this module for Joomla! from nx-designs.ch: https://nx-designs.ch/ext/agile-downloads
