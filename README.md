@@ -1,4 +1,4 @@
-# Agile Downloads
+# Agile Downloads lite
 for Joomla!
 
 Type: Joomla! Module
