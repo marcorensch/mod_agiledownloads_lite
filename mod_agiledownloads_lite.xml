@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.8" client="site" method="upgrade">
+	<name>agile Downloads lite</name>
+	<creationDate>March 2021</creationDate>
+	<author>nx-designs</author>
+	<authorEmail>support@nx-designs.ch</authorEmail>
+	<authorUrl>http://www.nx-designs.ch</authorUrl>
+	<copyright>Copyright© 2021 by nx-designs</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>MOD_NXAD_DESCRIPTION</description>
+
+	<files>
+		<filename module="mod_agiledownloads_lite">mod_agiledownloads_lite.php</filename>
+		<folder>tmpl</folder>
+		<folder>language</folder>
+		<folder>models</folder>
+		<filename>mod_agiledownloads_lite.xml</filename>
+		<filename>helper.php</filename>
+	</files>
+
+	<!-- Update servers -->
+	<updateservers>
+		<server type="extension" priority="1" name="mod_agiledownloads">https://updates.nx-designs.ch/lite_mod_agiledownloads.xml</server>
+	</updateservers>
+	<!-- Languages -->
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_agiledownloads_lite.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_agiledownloads_lite.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="liteInfoSrc" type="spacer" label="MOD_NXAD_SRCLIGHTINFO" />
+				<field name="watched-folders"
+					   type="subform"
+					   formsource="modules/mod_agiledownloads_lite/models/forms/watched-subform.xml"
+					   multiple="false"
+					   min="1"
+					   layout="joomla.form.field.subform.repeatable"
+					   label="MOD_NXAD_GRP_WATCHED_MAIN_LBL" description="MOD_NXAD_GRP_WATCHED_MAIN_DES"
+				/>
+				<field 	name="ordering"
+						  type="radio"
+						  class="btn-group"
+						  label="MOD_NXAD_ORDERING" description="MOD_NXAD_ORDERING_DES"
+						  default="0"
+				>
+					<option value="0">JNO</option>
+					<option value="asc">MOD_NXAD_ASC</option>
+					<option value="desc">MOD_NXAD_DESC</option>
+				</field>
+				<field 	name="ordering-by"
+						  showon="ordering!:0"
+						  type="list"
+						  label="MOD_NXAD_ORDERING_BY" description="MOD_NXAD_ORDERING_BY_DES"
+						  default="name"
+				>
+					<option value="name">MOD_NXAD_ORDERING_BY_NAME</option>
+					<option value="label">MOD_NXAD_ORDERING_BY_LABEL</option>
+				</field>
+			</fieldset>
+			<fieldset name="layout">
+				<field name="liteInfoLayouts" type="spacer" label="MOD_NXAD_LAYOUTLIGHTINFO" />
+				<field name="design"
+						type="list"
+					   	default="list"
+					   	label="MOD_NXAD_DESIGN_LBL"
+					   	description="MOD_NXAD_DESIGN_DESC"
+				>
+					<option value="list">MOD_NXAD_OPT_LIST</option>
+				</field>
+				<field name="show-icon"
+					   type="radio"
+					   class="btn-group btn-group-yesno"
+					   default="1"
+					   label="MOD_NXAD_ICON_LBL"
+					   description="MOD_NXAD_ICON_DES"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="warning-message-fa" type="spacer" showon="load_fa:0[AND]show-icon:1" label="MOD_NXAD_FA_WARN"/>
+				<field name="button-icon-pos"
+					   showon="show-icon:1[AND]design:buttons"
+					   type="list"
+					   label="MOD_NXAD_ICON_BTN_POS_LBL" description="MOD_NXAD_ICON_BTN_POS_DES"
+				>
+					<option value="left">MOD_NXAD_LEFT</option>
+					<option value="label">MOD_NXAD_OPT_LABEL</option>
+				</field>
+				<field name="list-style"
+					   showon="design:list"
+					   type="list"
+					   default="default"
+					   label="MOD_NXAD_LIST_STYLE_LBL"
+					   description="MOD_NXAD_LIST_STYLE_DESC"
+				>
+					<option value="default">MOD_NXAD_DEFAULT</option>
+					<option value="divider">MOD_NXAD_DIVIDER</option>
+					<option value="striped">MOD_NXAD_STRIPED</option>
+				</field>
+				<field name="list-size"
+					   showon="design:list"
+					   type="list"
+					   default="default"
+					   label="MOD_NXAD_LIST_SIZE_LBL"
+					   description="MOD_NXAD_LIST_SIZE_DESC"
+				>
+					<option value="collapse">MOD_NXAD_COLLAPSE</option>
+					<option value="default">MOD_NXAD_DEFAULT</option>
+					<option value="large">MOD_NXAD_LARGE</option>
+				</field>
+				<field name="content-size"
+					   showon="design:list"
+					   type="list"
+					   default="default"
+					   label="MOD_NXAD_CONTENT_SIZE_LBL"
+					   description="MOD_NXAD_CONTENT_SIZE_DESC"
+				>
+					<option value="small">MOD_NXAD_SMALL</option>
+					<option value="default">MOD_NXAD_DEFAULT</option>
+					<option value="large">MOD_NXAD_LARGE</option>
+				</field>
+				<field name="show-filetype-label"
+					   showon="design:list"
+					   type="radio"
+					   default="1"
+					   filter="integer"
+					   class="btn-group btn-group-yesno"
+					   label="MOD_NXAD_FILETYPE_LBL" description="MOD_NXAD_FILETYPE_DES"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="show-ext"
+					   type="radio"
+					   default="0"
+					   filter="integer"
+					   class="btn-group btn-group-yesno"
+					   label="MOD_NXAD_SHOW_FILEEXT_LBL" description="MOD_NXAD_SHOW_FILEEXT_DES"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+
+				<field name="group-title-tag"
+					   type="list"
+					   default="h3"
+					   label="MOD_NXAD_GROUP_TITLE_TAG" description="MOD_NXAD_GROUP_TITLE_TAG_DES"
+				>
+					<option value="h1">H1</option>
+					<option value="h2">H2</option>
+					<option value="h3">H3</option>
+					<option value="h4">H4</option>
+					<option value="h5">H5</option>
+					<option value="h6">H6</option>
+					<option value="p">paragraph</option>
+					<option value="span">span</option>
+					<option value="div">div</option>
+				</field>
+				<field name="group-title-class"
+					   type="textarea"
+					   filter="safehtml"
+					   rows="3"
+					   label="MOD_NXAD_GROUP_TITLE_CLS" description="MOD_NXAD_GROUP_TITLE_CLS_DES"
+				/>
+			</fieldset>
+
+			<fieldset name="customrules_tab">
+				<field name="label-overrides"
+					   type="subform"
+					   formsource="modules/mod_agiledownloads_lite/models/forms/customRules.xml"
+					   multiple="true"
+					   max="2"
+					   layout="joomla.form.field.subform.repeatable"
+					   label=""
+				/>
+				<field name="liteInfoRules" type="spacer" label="MOD_NXAD_RULESLIGHTINFO" />
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="load_uikit"
+					   type="radio"
+					   filter="integer"
+					   default="1"
+					   class="btn-group btn-group-yesno"
+					   label="Load UIkit" description="Load scoped UIkit version from this module"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="load_fa"
+					   type="radio"
+					   filter="integer"
+					   default="0"
+					   class="btn-group btn-group-yesno"
+					   label="Load FontAwesome (free)" description="Load free version of FontAwesome from this module"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field name="debug"
+					   type="radio"
+					   filter="integer"
+					   default="0"
+					   class="btn-group btn-group-yesno"
+					   label="Debug" description="Show Debug information"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

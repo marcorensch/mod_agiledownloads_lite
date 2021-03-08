@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fieldset>
+        <field name="rule_type" type="list" label="MOD_NXAD_RULES_TYPE" description="MOD_NXAD_RULES_TYPE_DES" default="before" class="">
+            <option value="replace">MOD_NXAD_RULES_OPT_RPLC</option>
+        </field>
+        <field showon="rule_type:replace" name="rule_string_to_find" type="text" label="MOD_NXAD_RULES_SRC" description="MOD_NXAD_RULES_SRC_DES" filter="raw" hint="your string" class="" />
+        <field showon="rule_type:replace" name="rule_string_replace_with" type="list" label="MOD_NXAD_RULES_RPC_TYP" description="MOD_NXAD_RULES_RPC_TYP_DES" default="string" class="">
+            <option value="string">MOD_NXAD_RULES_RPC_TYP_OPT_STR</option>
+            <option value="nbspace">MOD_NXAD_RULES_RPC_TYP_OPT_NBSPC</option>
+            <option value="space">MOD_NXAD_RULES_RPC_TYP_OPT_SPC</option>
+            <option value="break">MOD_NXAD_RULES_RPC_TYP_OPT_LB</option>
+        </field>
+        <field showon="rule_type:replace[AND]rule_string_replace_with:string" name="rule_string_to_replace" type="text" label="MOD_NXAD_RULES_RPC" description="MOD_NXAD_RULES_RPC_DES" filter="raw" hint="your string" class="" />
+        <field showon="rule_type!:replace,removeAllNumbers,removeLeadNumbers,removeTrailNumbers" name="rule_string_to_add" type="text" label="MOD_NXAD_RULES_STR_ADD" description="MOD_NXAD_RULES_STR_ADD_DES" filter="raw"  hint="your string" class="" />
+    </fieldset>
+</form>
