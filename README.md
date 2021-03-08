@@ -10,6 +10,7 @@ Compatibility: Joomla! 3 & Joomla! 4 (beta)
 
 - Recursive Folderselection
 - Multiple Source Folders
+- Include Subfolder files into view
 - Optional Folder Access Restriction (Visible / Downloadable only for registered Joomla! Users)
 - Optional Grouping of multiple Folders
 - Buttons Layout
