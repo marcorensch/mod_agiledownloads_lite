@@ -7,7 +7,7 @@
 	<authorUrl>http://www.nx-designs.ch</authorUrl>
 	<copyright>Copyright© 2021 by nx-designs</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<description>MOD_NXAD_DESCRIPTION</description>
 
 	<files>
@@ -59,7 +59,19 @@
 				>
 					<option value="name">MOD_NXAD_ORDERING_BY_NAME</option>
 					<option value="label">MOD_NXAD_ORDERING_BY_LABEL</option>
+					<option value="" disabled="true">Creation Date (only in Pro)</option>
+					<option value="" disabled="true">Modification Date (only in Pro)</option>
 				</field>
+				<field name="use-search"
+					   type="radio"
+					   class="btn-group btn-group-yesno"
+					   default="0"
+					   label="Use Search (pro feature)"
+				>
+					<option value="0">JNO</option>
+					<option value="" disabled="true">JYES</option>
+				</field>
+
 			</fieldset>
 			<fieldset name="layout">
 				<field name="liteInfoLayouts" type="spacer" label="MOD_NXAD_LAYOUTLIGHTINFO" />
@@ -169,6 +181,84 @@
 				/>
 			</fieldset>
 
+			<fieldset name="lightbox">
+				<field type="spacer" name="lightbox-pro-info" label="LIGHTBOX_PRO_INFO" />
+				<field name="use_lightbox"
+					   type="radio"
+					   class="btn-group btn-group-yesno"
+					   default="0"
+					   filter="integer"
+					   label="MOD_NXAD_USE_LIGHTBOX_LBL" description="MOD_NXAD_USE_LIGHTBOX_DES"
+				>
+					<option value="0">JNO</option>
+					<option value="1" disabled="true">JYES</option>
+				</field>
+				<field name="lightbox_filetypes"
+					   type="textarea"
+					   rows="5"
+					   default=""
+					   filter="safehtml"
+					   hint="jpg,jpeg,pdf,..."
+					   label="MOD_NXAD_LIGHTBOX_FILETYPES_LBL" description="MOD_NXAD_LIGHTBOX_FILETYPES_DES"
+				/>
+				<field name="demo_lightbox_caption"
+					   type="list"
+					   default="onlypro"
+					   label="MOD_NXAD_LIGHTBOX_CAPTION_LBL" description="MOD_NXAD_LIGHTBOX_CAPTION_DES"
+				>
+					<option value="onlypro">Only in Pro Version</option>
+					<option value="">MOD_NXAD_LIGHTBOX_CAPTION_HIDDEN</option>
+					<option value="">MOD_NXAD_LIGHTBOX_CAPTION_SMALL</option>
+					<option value="">MOD_NXAD_LIGHTBOX_CAPTION_DEFAULT</option>
+					<option value="">MOD_NXAD_LIGHTBOX_CAPTION_LARGE</option>
+					<option value="">MOD_NXAD_LIGHTBOX_CAPTION_LEAD</option>
+				</field>
+				<field name="demo_show_download"
+					   type="radio"
+					   class="btn-group btn-group-yesno"
+					   default="0"
+					   filter="integer"
+					   label="MOD_NXAD_LIGHTBOX_SHOW_DOWNLOAD_LBL" description="MOD_NXAD_LIGHTBOX_SHOW_DOWNLOAD_DES"
+				>
+					<option value="0">JNO</option>
+					<option value="1" disabled="true">JYES</option>
+				</field>
+				<field name="demo_lightbox_caption_link_cls"
+					   type="list"
+					   default="onlypro"
+					   label="MOD_NXAD_LIGHTBOX_CAPTION_STYLE_LBL" description="MOD_NXAD_LIGHTBOX_CAPTION_STYLE_DES"
+				>
+					<option value="onlypro">Only in Pro Version</option>
+					<option value="">MOD_NXAD_TEXT</option>
+					<option value="">MOD_NXAD_OPT_BTN_DEF</option>
+					<option value="">MOD_NXAD_OPT_BTN_PRIM</option>
+					<option value="">MOD_NXAD_OPT_BTN_SEC</option>
+				</field>
+				<field name="demo_lightbox_caption_link_size_cls"
+					   type="list"
+					   default="onlypro"
+					   label="MOD_NXAD_LIGHTBOX_LINK_SIZE_LBL" description="MOD_NXAD_LIGHTBOX_LINK_SIZE_DES"
+				>
+					<option value="onlypro">Only in Pro Version</option>
+					<option value="">MOD_NXAD_SMALL</option>
+					<option value="">MOD_NXAD_MEDIUM</option>
+					<option value="">MOD_NXAD_LARGE</option>
+
+				</field>
+
+
+				<field name="demo_show_download_icon"
+					   type="radio"
+					   class="btn-group btn-group-yesno"
+					   default="0"
+					   label="MOD_NXAD_DLICON_LBL"
+					   description="MOD_NXAD_DLICON_DES"
+				>
+					<option value="0">JNO</option>
+					<option value="1" disabled="true">JYES</option>
+				</field>
+			</fieldset>
+
 			<fieldset name="customrules_tab">
 				<field name="label-overrides"
 					   type="subform"
@@ -180,7 +270,7 @@
 				/>
 				<field name="liteInfoRules" type="spacer" label="MOD_NXAD_RULESLIGHTINFO" />
 			</fieldset>
-			<fieldset name="advanced">
+			<fieldset name="advanced" addfieldpath="modules/mod_agiledownloads_lite/models/fields">
 				<field name="load_uikit"
 					   type="radio"
 					   filter="integer"
@@ -217,6 +307,12 @@
 						type="text"
 						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
 						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field name="backendhelper"
+					   type="backendhelper"
+					   label=""
+				/>
+				<field name="what-the-easteregg" type="spacer" label="NXVINFO" />
 			</fieldset>
 		</fields>
 	</config>

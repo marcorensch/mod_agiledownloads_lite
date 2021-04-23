@@ -1,0 +1,31 @@
+.nx-modal{
+    min-height:50vh;
+    background: #fafafa;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.nx-modal.nx-padding{
+    padding:30px;
+}
+
+.nx-modal .inset-left{
+    margin-left:20px;
+}
+
+.nx-modal .selected-folder{
+    font-weight: bold;
+}
+
+.nx-modal .folder{
+    cursor:pointer;
+    min-width: 100px;
+    color: rgb(62, 62, 62);
+    border-radius:5px;
+    padding:5px;
+    transition: all .2s ease-in-out;
+}
+
+.nx-modal .folder:hover{
+    color: rgb(18, 21, 24);
+}

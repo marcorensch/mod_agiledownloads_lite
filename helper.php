@@ -17,7 +17,7 @@ use Joomla\CMS\Factory;
 
 
 
-class ModAgileDownloadsHelper {
+class ModAgileDownloadsLiteHelper {
 
     private static function removePath($string){
         $pathArray = explode('/',$string);
@@ -249,5 +249,33 @@ class ModAgileDownloadsHelper {
         }
 
         return $filesArray;
+    }
+
+    /* Backend Helpers */
+    public static function getFoldersTreeAjax(){
+        $jinput = JFactory::getApplication()->input;
+        $dataJSON = $jinput->get('data', null, null);
+        $data = json_decode($dataJSON);
+        $path = JPATH_SITE . $data->path;
+
+        $filter = '.';
+        $maxLevel = 1;
+        $excludedFolders = array('administrator','components','plugins','modules','media','tmp','includes','layouts','libraries','templates','cli','bin','cache','language');
+        $parentIdsToExclude = array();
+
+        $folders = JFolder::listFolderTree($path, $filter, $maxLevel, $level = 0, $parent = 0);
+
+        if(is_array($folders) && count($excludedFolders)){
+            foreach($folders as $key => $folder){
+                if((in_array($folder['name'], $excludedFolders) && $folder['parent'] === 0) || in_array($folder['parent'], $parentIdsToExclude)){
+                    $parentIdsToExclude[] = $folder['id'];
+                    unset($folders[$key]);
+                }
+            }
+        }
+
+
+
+        return array_values($folders);
     }
 }

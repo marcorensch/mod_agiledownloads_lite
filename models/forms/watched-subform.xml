@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-    <fieldset>
-    <field name="watched_folder"
-           type="folderlist"
-           directory=""
-           hide_none="true"
-           hide_default="true"
-           recursive="true"
-           exclude="administrator|components|plugins|modules|media|tmp|includes|layouts|libraries|templates|cli|bin|cache|language"
-           label="MOD_NXAD_WATCHED_FOLDER_LBL"
-           description="MOD_NXAD_WATCHED_FOLDER_DES"
-    />
+    <fieldset addfieldpath="modules/mod_agiledownloads_lite/models/fields">
+        <field name="watched_folder" type="nxmodalfolderselect" label="MOD_NXAD_WATCHED_FOLDER_LBL" description="MOD_NXAD_WATCHED_FOLDER_DES"/>
+
     <field name="grouping_title"
             type="text"
             filter="safehtml"

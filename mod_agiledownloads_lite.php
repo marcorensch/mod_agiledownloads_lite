@@ -32,7 +32,7 @@ if($params->get('load_fa',0)) {
 $document->addStyleSheet(JUri::base() . 'modules/mod_agiledownloads_lite/tmpl/assets/css/main.css?ver=1.3');
 
 // Get files from defined folder
-$files = ModAgileDownloadsHelper::getFolderFiles($params);
+$files = ModAgileDownloadsLiteHelper::getFolderFiles($params);
 
 // The below line is no longer used in Joomla 4
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
