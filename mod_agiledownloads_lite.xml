@@ -21,7 +21,8 @@
 
 	<!-- Update servers -->
 	<updateservers>
-		<server type="extension" priority="1" name="mod_agiledownloads">https://updates.nx-designs.ch/lite_mod_agiledownloads.xml</server>
+		<server type="extension" priority="1" name="mod_agiledownloads_lite">https://updates.nx-designs.ch/lite_mod_agiledownloads.xml</server>
+		<server type="extension" priority="1" name="mod_agiledownloads_lite">https://update.nx-designs.ch/lite_mod_agiledownloads.xml</server>
 	</updateservers>
 	<!-- Languages -->
 	<languages folder="language">
