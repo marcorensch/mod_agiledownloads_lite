@@ -1,0 +1,17 @@
+.cols_select .btn-success{
+    background: #3a7db6;
+}
+
+.cols_select .btn-success:hover{
+    background: #265278;
+}
+
+.nx-min-width-small{
+    min-width:80px;
+}
+
+/* Joomla 4.x specific */
+
+.control-label:has(.subform-layout) {
+    display: none;
+}

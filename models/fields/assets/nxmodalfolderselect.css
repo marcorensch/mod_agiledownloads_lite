@@ -29,3 +29,14 @@
 .nx-modal .folder:hover{
     color: rgb(18, 21, 24);
 }
+
+.uk-modal .nx-button-success{
+    border:1px solid transparent;
+    text-decoration: none;
+    color: #fff ;
+}
+
+.uk-modal .nx-button-success:hover{
+    text-decoration: none;
+    color:#fff;
+}

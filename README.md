@@ -2,7 +2,11 @@
 
 Type: Joomla! Module
 
-Compatibility: Joomla! 3 & Joomla! 4 (beta)
+Compatibility:
+- Joomla! 3.9 and above
+- Joomla! 4.x
+- Joomla! 5.x
+
 <hr>
 
 <h3>Professional Features that are <b>not</b> integrated in this lite version:</h3>

@@ -1,0 +1,23 @@
+joomla-field-subform[name="jform[params][watched-folders]"] .subform-repeatable-group{
+    margin-top:8px;
+    padding:10px;
+    border-radius: 4px;
+    border:1px solid #c9c9c9;
+    background: #fafafa;
+}
+
+joomla-field-subform[name="jform[params][watched-folders]"] .subform-repeatable-group .btn.open-folderselect-modal {
+
+}
+
+.uk-modal {
+    backdrop-filter: blur(3px);
+}
+
+[data-base-name="ext_src_grp"]  .control-label{
+    max-width: 130px;
+}
+
+[data-base-name="ext_grp_sources"] {
+    background: #fafafa;
+}
