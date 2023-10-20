@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fieldset addfieldpath="modules/mod_agiledownloads_lite/models/fields">
-        <field name="watched_folder" type="nxmodalfolderselect" label="MOD_NXAD_WATCHED_FOLDER_LBL" description="MOD_NXAD_WATCHED_FOLDER_DES"/>
+        <field name="watched_folder" type="nxmodalfolderselectlite" label="MOD_NXAD_WATCHED_FOLDER_LBL" description="MOD_NXAD_WATCHED_FOLDER_DES"/>
 
     <field name="grouping_title"
             type="text"

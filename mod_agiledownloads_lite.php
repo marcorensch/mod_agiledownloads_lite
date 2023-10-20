@@ -35,7 +35,7 @@ $document->addStyleSheet(JUri::base() . 'modules/mod_agiledownloads_lite/tmpl/as
 $files = ModAgileDownloadsLiteHelper::getFolderFiles($params);
 
 // The below line is no longer used in Joomla 4
-$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx',''));
 
 // Define defaults
 $loggedIn = Factory::getUser()->id;

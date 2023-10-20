@@ -162,58 +162,81 @@ class ModAgileDownloadsLiteHelper {
         return $item;
     }
 
-    public static function getFolderFiles($params){
+    public static function getFolderFiles($params)
+    {
         // Filename exclude
-        if(strlen($params->get('ignore',''))){
-            $exclude = explode(',', preg_replace('/\s+/', '', $params->get('ignore','')));
-        }else{
+        if (strlen($params->get('ignore', ''))) {
+            $exclude = explode(',', preg_replace('/\s+/', '', $params->get('ignore', '')));
+        } else {
             $exclude = array();
         }
         $exclude = array_merge($exclude, array('.svn', 'CVS', '.DS_Store', '__MACOSX'));
 
+        // Foldername exclude
+        if (strlen($params->get('folder-exclude', ''))) {
+            $exclude_folderPatters = explode(',', $params->get('folder-exclude'));
+        } else {
+            $exclude_folderPatters = array();
+        }
+
         // File extension filter
-        if(strlen($params->get('filetype_filter',''))){
-            $filter = explode(',',preg_replace('/\s+/', '', $params->get('filetype_filter','')));
-        }else{
+        if (strlen($params->get('filetype_filter', ''))) {
+            $filter = explode(',', preg_replace('/\s+/', '', $params->get('filetype_filter', '')));
+        } else {
             $filter = array();
         }
-        $filter = array_merge($filter,array('^\..*', '.*~'));
+        $filter = array_merge($filter, array('^\..*', '.*~'));
 
         $filesArray = array();
 
-        $folder = $params->get('watched-folders',array());
-
+        $folders = $params->get('watched-folders', array());
         $foldersArr = array();
+        foreach ($folders as $folder) {
+            $path = $folder->watched_folder;
+            $folder->recursive = false;
 
-        $path = $folder->watched_folder;
+            if (!strlen($path)) {
+                echo 'Empty Folder configuration in settings!';
+                continue;
+            }
 
-        $group = new stdClass();
-        $group->title = $folder->grouping_title;
-        $group->path = $path;
-        $group->isRestricted = file_exists(JPATH_ROOT . '/' . $path .'/.htaccess');
-        $group->files = array();
-        if(Folder::exists($path)){
-            $group->files = Folder::files($path, '.', false, true , $exclude, $filter);
+            $group = new stdClass();
+            $group->title = $folder->grouping_title;
+            $group->path = $path;
+            $group->isRestricted = file_exists(JPATH_ROOT . '/' . $path . '/.htaccess');
+            $group->files = array();
+            if (Folder::exists($path)) {
+                $group->files = Folder::files($path, '.', $folder->recursive, true, $exclude, $filter);
+            }
+            if (count($exclude_folderPatters) && is_array($group->files)) {
+                foreach ($group->files as $k => $f) {
+                    foreach ($exclude_folderPatters as $needle) {
+                        $needle = trim($needle);
+                        if (strpos($f, $needle) !== false) {
+                            unset($group->files[$k]);
+                        }
+                    }
+                }
+            }
+            $foldersArr[] = $group;
         }
-        $foldersArr[] = $group;
 
+        $orderBy = $params->get('ordering-by', 'name');
 
-        $orderBy = $params->get('ordering-by','name');
-
-        if($foldersArr){
+        if ($foldersArr) {
             // Add merged array if group-watched is disabled
-            if(!$params->get('group-watched',1)) {
+            if (!$params->get('group-watched', 1)) {
                 $filesArray['merged'] = array();
             }
-            foreach ($foldersArr as $group){
+            foreach ($foldersArr as $group) {
                 $group->processed = array();
-                foreach ($group->files as &$file){
+                foreach ($group->files as &$file) {
                     $group->processed[] = self::buildFileManifest($file, $group->isRestricted, $params);
                 }
 
-                if(!$params->get('group-watched',1)){
+                if (!$params->get('group-watched', 1)) {
                     $filesArray['merged'] = array_merge($filesArray['merged'], $group->processed);
-                }else{
+                } else {
                     // Do the sort for each group before adding them to the array (grouped):
                     if (in_array($params->get('ordering', 'asc'), array('asc', 'desc'))) {
                         if ($params->get('ordering', 'asc') == 'asc') {
@@ -231,7 +254,7 @@ class ModAgileDownloadsLiteHelper {
 
             }
             // do a sort after all files are inside the array (when not grouped):
-            if(!$params->get('group-watched',1)) {
+            if (!$params->get('group-watched', 1)) {
                 if (in_array($params->get('ordering', 'asc'), array('asc', 'desc'))) {
                     if ($params->get('ordering', 'asc') == 'asc') {
                         usort($filesArray['merged'], function ($a, $b) use ($orderBy) {
@@ -243,7 +266,7 @@ class ModAgileDownloadsLiteHelper {
                         });
                     }
                 }
-            }else{
+            } else {
                 // moved inside loop row 307
             }
         }
@@ -252,28 +275,30 @@ class ModAgileDownloadsLiteHelper {
     }
 
     /* Backend Helpers */
-    public static function getFoldersTreeAjax(){
-        $jinput = JFactory::getApplication()->input;
-        $dataJSON = $jinput->get('data', null, null);
+    public static function getFoldersTreeAjax()
+    {
+        $jinput = Factory::getApplication()->input;
+        $dataJSON = $jinput->get('data', null, "RAW");
         $data = json_decode($dataJSON);
         $path = JPATH_SITE . $data->path;
 
         $filter = '.';
         $maxLevel = 1;
-        $excludedFolders = array('administrator','components','plugins','modules','media','tmp','includes','layouts','libraries','templates','cli','bin','cache','language');
+        $excludedFolders = array('administrator', 'components', 'plugins', 'modules', 'media', 'tmp', 'includes', 'layouts', 'libraries', 'templates', 'cli', 'bin', 'cache', 'language');
         $parentIdsToExclude = array();
 
-        $folders = JFolder::listFolderTree($path, $filter, $maxLevel, $level = 0, $parent = 0);
+        $folders = Folder::listFolderTree($path, $filter, $maxLevel, $level = 0, $parent = 0);
 
-        if(is_array($folders) && count($excludedFolders)){
-            foreach($folders as $key => $folder){
-                if((in_array($folder['name'], $excludedFolders) && $folder['parent'] === 0) || in_array($folder['parent'], $parentIdsToExclude)){
+        error_log(print_r($folders, true));
+
+        if (is_array($folders) && count($excludedFolders)) {
+            foreach ($folders as $key => $folder) {
+                if ((in_array($folder['name'], $excludedFolders) && $folder['parent'] === 0) || in_array($folder['parent'], $parentIdsToExclude)) {
                     $parentIdsToExclude[] = $folder['id'];
                     unset($folders[$key]);
                 }
             }
         }
-
 
 
         return array_values($folders);

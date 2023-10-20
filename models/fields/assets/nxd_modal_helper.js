@@ -48,7 +48,7 @@ function getFilesystemAjax(path = ''){
         'data': JSON.stringify(data),
         'format': 'json',
         'option':'com_ajax',
-        'module': 'agiledownloads',
+        'module': 'agiledownloads_lite',
         'method': 'getFoldersTree'
     };
     return jQuery.ajax({

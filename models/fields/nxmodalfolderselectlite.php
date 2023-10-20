@@ -18,10 +18,10 @@ use Joomla\CMS\Language\Text;
  * Supports a modal for selecting a helloworld record
  *
  */
-class JFormFieldNxModalFolderSelect extends JFormField
+class JFormFieldNxModalFolderSelectLite extends JFormField
 {
 
-    protected $type = 'nxmodalfolderselect';
+    protected $type = 'nxmodalfolderselectlite';
 
     /**
      * Method to get the html for the input field.
@@ -52,20 +52,20 @@ class JFormFieldNxModalFolderSelect extends JFormField
 
             $document->addScript(JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxd_modal_helper.js');
             $document->addScript(JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxd_modal.js');
-            $document->addStyleSheet(JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxmodalfolderselect.css?ver=1.4');
+            $document->addStyleSheet(JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxmodalfolderselect.css?ver=1.4.1');
         }
         else
         {
             $wa = $document->getWebAssetManager();
-            $wa->registerAndUseStyle('uikitCss', JUri::root() . 'modules/mod_agiledownloads_lite/tmpl/assets/uikit/3.6.16/css/uikit.min.css');
-            $wa->registerAndUseScript('uikitJs', JUri::root() . 'modules/mod_agiledownloads_lite/tmpl/assets/uikit/3.6.16/js/uikit.min.js');
-            $wa->registerAndUseScript('uikitIconsJs', JUri::root() . 'modules/mod_agiledownloads_lite/tmpl/assets/uikit/3.6.16/js/uikit-icons.min.js');
+            $wa->registerAndUseStyle('uikitCssadlite', JUri::root() . 'modules/mod_agiledownloads_lite/tmpl/assets/uikit/3.6.16/css/uikit.min.css');
+            $wa->registerAndUseScript('uikitJsadlite', JUri::root() . 'modules/mod_agiledownloads_lite/tmpl/assets/uikit/3.6.16/js/uikit.min.js');
+            $wa->registerAndUseScript('uikitIconsJsadlite', JUri::root() . 'modules/mod_agiledownloads_lite/tmpl/assets/uikit/3.6.16/js/uikit-icons.min.js');
 
-            $wa->registerAndUseScript('nxModalHelper', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxd_modal_helper.js?ver=1.3.2');
-            $wa->registerAndUseScript('nxModalJs', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxd_modal.js?ver=1.3.2');
-            $wa->registerAndUseScript('nxBackend4Js', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/backend_j4.js');
-            $wa->registerAndUseStyle('nxmodalFolderselectCss', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxmodalfolderselect.css');
-            $wa->registerAndUseStyle('nxmodalFolderselectCssJ4', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxmodalfolderselect_j4.css');
+            $wa->registerAndUseScript('nxModalHelperAdLite', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxd_modal_helper.js');
+            $wa->registerAndUseScript('nxModalJsAdLite', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxd_modal.js');
+            $wa->registerAndUseScript('nxBackend4JsAdLite', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/backend_j4.js');
+            $wa->registerAndUseStyle('nxmodalFolderselectCssAdLite', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxmodalfolderselect.css');
+            $wa->registerAndUseStyle('nxmodalFolderselectCssJ4AdLite', JUri::root() . 'modules/mod_agiledownloads_lite/models/fields/assets/nxmodalfolderselect_j4.css');
         }
 
         // display the default greeting or "Select" if no default specified
